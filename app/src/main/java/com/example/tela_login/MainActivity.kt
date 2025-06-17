@@ -48,7 +48,7 @@ fun LoginScreen() {
         contentAlignment = Alignment.Center
     ) {
         Image(//plano de fundo
-            painter = painterResource(id = R.drawable.cowshoroomwpp),
+            painter = painterResource(id = R.drawable.wallpapermuitochatosemgracasemsalinsososemcriatividade),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
