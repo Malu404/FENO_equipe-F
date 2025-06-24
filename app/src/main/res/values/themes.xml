@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Tela_login" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Tela_login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Você pode personalizar as cores, fontes e estilos aqui -->
+        <!-- Por exemplo: -->
+        <item name="colorPrimary">@color/red_pet</item>
+        <item name="colorPrimaryVariant">@color/red_pet</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+    </style>
+
 </resources>

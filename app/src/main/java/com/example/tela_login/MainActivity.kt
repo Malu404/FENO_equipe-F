@@ -22,10 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tela_login.ui.theme.Tela_loginTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialogDefaults.containerColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import android.app.Activity
+import android.content.Intent
+import androidx.compose.ui.platform.LocalContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LoginScreen() {
+    val context = LocalContext.current
     Box(//caixa do smartphone
         modifier = Modifier
             .fillMaxSize()
@@ -104,6 +107,10 @@ fun LoginScreen() {
                 Button(
                     onClick = {
                         // Lógica de login aqui
+                        val intent = Intent(context, MenuSelecao::class.java)
+                        context.startActivity(intent)
+                        //fecha a tela de login se for pro menu
+                        //(context as? Activity)?.finish()
                     },
                     modifier = Modifier
                         .fillMaxWidth()

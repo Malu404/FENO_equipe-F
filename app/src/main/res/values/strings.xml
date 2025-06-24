@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">tela_login</string>
+    <string name="title_activity_menu_selecao">Menu_selecao</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
