@@ -28,14 +28,17 @@ import androidx.compose.ui.res.painterResource
 import android.app.Activity
 import android.content.Intent
 import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.launch
+import androidx.compose.ui.text.input.ImeAction
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Tela_loginTheme {
-                LoginScreen()
+            MaterialTheme {
+                SolicitarMonitoriaScreen()
             }
         }
     }
@@ -127,3 +130,81 @@ fun LoginScreen() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SolicitarMonitoriaScreen() {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    var nome by remember { mutableStateOf("") }
+    var materia by remember { mutableStateOf("") }
+    var data by remember { mutableStateOf("") }
+    var duvidas by remember { mutableStateOf("") }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Solicitação de Monitoria") }
+            )
+        },
+        content = { padding ->
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .padding(24.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                OutlinedTextField(
+                    value = nome,
+                    onValueChange = { nome = it },
+                    label = { Text("Seu nome") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                OutlinedTextField(
+                    value = materia,
+                    onValueChange = { materia = it },
+                    label = { Text("Matéria") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                )
+
+                OutlinedTextField(
+                    value = data,
+                    onValueChange = { data = it },
+                    label = { Text("Data desejada") },
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                )
+
+                OutlinedTextField(
+                    value = duvidas,
+                    onValueChange = { duvidas = it },
+                    label = { Text("Dúvidas") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                )
+
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("Solicitação enviada com sucesso!")
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 32.dp)
+                ) {
+                    Text("Enviar Solicitação", fontSize = 18.sp)
+                }
+            }
+        }
+    )
+}
