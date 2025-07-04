@@ -30,15 +30,16 @@ import android.content.Intent
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
 import androidx.compose.ui.text.input.ImeAction
-
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.TextRange
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MaterialTheme {
-                SolicitarMonitoriaScreen()
+            Tela_loginTheme {
+                LoginScreen()
             }
         }
     }
@@ -130,104 +131,3 @@ fun LoginScreen() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SolicitarMonitoriaScreen() {
-    val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
-
-    //var nome by remember { mutableStateOf("") }
-    var materia by remember { mutableStateOf("") }
-    var data by remember { mutableStateOf("") }
-    var duvidas by remember { mutableStateOf("") }
-
-    Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        topBar = {
-            TopAppBar(
-                title = { Text("Solicitação de Monitoria") }
-            )
-        },
-        content = { padding ->
-            Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .padding(24.dp)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                //OutlinedTextField(
-                //    value = nome,
-                //    onValueChange = { nome = it },
-                //    label = { Text("Seu nome") },
-                //    modifier = Modifier.fillMaxWidth(),
-                //    colors = OutlinedTextFieldDefaults.colors(
-                //        focusedBorderColor = colorResource(id = R.color.red_pet),
-                //        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
-                //    )
-
-                //)
-
-                OutlinedTextField(
-                    value = materia,
-                    onValueChange = { materia = it },
-                    label = { Text("Matéria") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = colorResource(id = R.color.red_pet),
-                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
-                    )
-
-                )
-
-                OutlinedTextField(
-                    value = data,
-                    onValueChange = { data = it },
-                    label = { Text("Data desejada") },
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = colorResource(id = R.color.red_pet),
-                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
-                    )
-
-                )
-
-                OutlinedTextField(
-                    value = duvidas,
-                    onValueChange = { duvidas = it },
-                    label = { Text("Dúvidas") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = colorResource(id = R.color.red_pet),
-                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
-                    )
-
-                )
-
-                Button(
-                    onClick = {
-                        coroutineScope.launch {
-                            snackbarHostState.showSnackbar("Solicitação enviada com sucesso!")
-                        }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 32.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.red_pet)
-                    )
-                ) {
-                    Text("Enviar Solicitação", fontSize = 18.sp)
-                }
-            }
-        }
-    )
-}
