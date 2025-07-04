@@ -136,7 +136,7 @@ fun SolicitarMonitoriaScreen() {
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    var nome by remember { mutableStateOf("") }
+    //var nome by remember { mutableStateOf("") }
     var materia by remember { mutableStateOf("") }
     var data by remember { mutableStateOf("") }
     var duvidas by remember { mutableStateOf("") }
@@ -157,12 +157,17 @@ fun SolicitarMonitoriaScreen() {
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OutlinedTextField(
-                    value = nome,
-                    onValueChange = { nome = it },
-                    label = { Text("Seu nome") },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                //OutlinedTextField(
+                //    value = nome,
+                //    onValueChange = { nome = it },
+                //    label = { Text("Seu nome") },
+                //    modifier = Modifier.fillMaxWidth(),
+                //    colors = OutlinedTextFieldDefaults.colors(
+                //        focusedBorderColor = colorResource(id = R.color.red_pet),
+                //        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
+                //    )
+
+                //)
 
                 OutlinedTextField(
                     value = materia,
@@ -170,7 +175,12 @@ fun SolicitarMonitoriaScreen() {
                     label = { Text("Matéria") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp)
+                        .padding(top = 16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = colorResource(id = R.color.red_pet),
+                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
+                    )
+
                 )
 
                 OutlinedTextField(
@@ -180,7 +190,12 @@ fun SolicitarMonitoriaScreen() {
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp)
+                        .padding(top = 16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = colorResource(id = R.color.red_pet),
+                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
+                    )
+
                 )
 
                 OutlinedTextField(
@@ -189,7 +204,12 @@ fun SolicitarMonitoriaScreen() {
                     label = { Text("Dúvidas") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp)
+                        .padding(top = 16.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = colorResource(id = R.color.red_pet),
+                        unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
+                    )
+
                 )
 
                 Button(
@@ -200,7 +220,10 @@ fun SolicitarMonitoriaScreen() {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 32.dp)
+                        .padding(top = 32.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colorResource(id = R.color.red_pet)
+                    )
                 ) {
                     Text("Enviar Solicitação", fontSize = 18.sp)
                 }
