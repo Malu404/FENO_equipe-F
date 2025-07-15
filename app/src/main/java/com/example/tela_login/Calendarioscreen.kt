@@ -21,6 +21,13 @@ import java.time.YearMonth
 @Composable
 fun CalendarioScreen() {
     val currentMonth = remember { YearMonth.now() }
+    val compromissos = remember { //adicionar aqui o pull da database
+        mapOf(
+            currentMonth.atDay(15) to listOf("Gado Cálculo 14h", "Gado grafos 13h"),
+            currentMonth.atDay(21) to listOf("Placeholder aaaaaa", "Hatsune miku esteve aqui")
+        )
+    }
+
     val selectedDate = remember { mutableStateOf<CalendarDay?>(null) }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -73,6 +80,31 @@ fun CalendarioScreen() {
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     content()
+                }
+            }
+        )
+    }
+    selectedDate.value?.let { diaSelecionado ->
+        val compromissosDoDia = compromissos[diaSelecionado.date]
+        AlertDialog(
+            onDismissRequest = { selectedDate.value = null },
+            title = {
+                Text("Compromissos de ${diaSelecionado.date}")
+            },
+            text = {
+                if (compromissosDoDia != null && compromissosDoDia.isNotEmpty()) {
+                    Column {
+                        compromissosDoDia.forEach {
+                            Text("• $it", fontSize = 14.sp)
+                        }
+                    }
+                } else {
+                    Text("Nenhum compromisso", fontSize = 14.sp)
+                }
+            },
+            confirmButton = {
+                Button(onClick = { selectedDate.value = null }) {
+                    Text("Fechar")
                 }
             }
         )
