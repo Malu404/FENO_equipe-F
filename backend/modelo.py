@@ -37,10 +37,10 @@ class Cliente(db.Model, Usuario):
 class Monitoria(db.Model):
     __tablename__ = 'monitoria'
     id = db.Column(db.Integer, primary_key=True)
-    data_hora = db.Column(db.DateTime, nullable=False)
-    descricao = db.Column(db.String(100), nullable=False)
+    data_hora = db.Column(db.DateTime)
+    descricao = db.Column(db.String(100))
     disciplina = db.Column(db.Integer, db.ForeignKey('disciplina.id'), nullable=False)
-    monitor_id = db.Column(db.Integer, db.ForeignKey('cliente.id'), nullable=False)
+    monitor_id = db.Column(db.Integer, db.ForeignKey('cliente.id'))
     data_criacao = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     certificado = db.relationship('Certificado', backref='monitoria', uselist=False)
