@@ -44,6 +44,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LoginScreen() {
     val context = LocalContext.current
+    var user by remember { mutableStateOf("") }
+    var pass by remember { mutableStateOf("") }
+    var showError_emptylogin by remember { mutableStateOf(false) }
+    var showError_wrongemail by remember { mutableStateOf(false) }
+    val emailValido = user.trim().endsWith("@alu.ufc.br", ignoreCase = true)
     Box(//caixa do smartphone
         modifier = Modifier
             .fillMaxSize()
@@ -79,8 +84,8 @@ fun LoginScreen() {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
 
-                var user by remember { mutableStateOf("") }
-                var pass by remember { mutableStateOf("") }
+                /*var user by remember { mutableStateOf("") }
+                var pass by remember { mutableStateOf("") }*/
 
                 OutlinedTextField(
                     value = user,
@@ -106,11 +111,22 @@ fun LoginScreen() {
 
                 Button(
                     onClick = {
-                        // Lógica de login aqui
-                        val intent = Intent(context, MenuSelecao::class.java)
-                        context.startActivity(intent)
-                        //fecha a tela de login se for pro menu
-                        //(context as? Activity)?.finish()
+                        showError_emptylogin = false
+                        showError_wrongemail = false
+
+                        // Verifica se os campos estão vazios
+                        if (user.trim().isEmpty() || pass.trim().isEmpty()) {
+                            showError_emptylogin = true
+                        }
+                        // Verifica se o email termina com @alu.ufc.br
+                        else if (!user.trim().endsWith("@alu.ufc.br", ignoreCase = true)) {
+                            showError_wrongemail = true
+                        }
+                        // Só entra se não tiver erro nenhum
+                        else {
+                            val intent = Intent(context, MenuSelecao::class.java)
+                            context.startActivity(intent)
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -122,8 +138,23 @@ fun LoginScreen() {
                 ) {
                     Text("Login")
                 }
+                if (showError_emptylogin) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Por favor, preencha usuário e senha.",
+                        color = Color.Red,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
+                if (showError_wrongemail) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Email deve terminar com @alu.ufc.br e senha não pode estar vazia.",
+                        color = Color.Red,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
             }
         }
     }
 }
-
