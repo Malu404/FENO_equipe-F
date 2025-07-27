@@ -23,10 +23,20 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
+
     <fragment
         android:id="@+id/navigation_calendar"
         android:name="com.example.tela_login.CalendarioFragment"
         android:label="Calendário"
         tools:layout="@layout/fragment_calendario" />
 
+    <fragment
+        android:id="@+id/navigation_monitoria"
+        android:name="com.example.tela_login.fragment.MonitoriaFragment"
+        android:label="Monitoria"
+        tools:layout="@layout/fragment_monitoria" />
+
 </navigation>
+
+
+

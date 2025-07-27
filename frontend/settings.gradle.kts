@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "tela_login"
 include(":app",":frontend", ":backend")
+

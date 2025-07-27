@@ -21,4 +21,9 @@
         android:title="Calendário" />
 
 
+    <item
+        android:id="@+id/navigation_monitoria"
+        android:icon="@drawable/baseline_app_soliciacao_24"
+        android:title="Monitoria" />
+
 </menu>

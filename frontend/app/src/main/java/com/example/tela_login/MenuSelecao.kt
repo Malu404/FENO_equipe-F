@@ -31,9 +31,13 @@ class MenuSelecao : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_dashboard,
-                R.id.navigation_notifications
+                R.id.navigation_notifications,
+                R.id.navigation_monitoria
+
             )
         )
+
+
 
         // Configura o ActionBar e o BottomNavigationView com o NavController
         //setupActionBarWithNavController(navController, appBarConfiguration)
