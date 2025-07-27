@@ -1,0 +1,154 @@
+[
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_outline_calendar_month_24.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/outline_calendar_month_24.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/layout_fragment_dashboard.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_baseline_lock_24.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_baseline_lock_24.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_logo_gado.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/logo_gado.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_destaque_gado.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/destaque_gado.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_dashboard_black_24dp.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_dashboard_black_24dp.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/navigation_mobile_navigation.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/navigation/mobile_navigation.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_wallpapermuitochatosemgracasemsalinsososemcriatividade.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/wallpapermuitochatosemgracasemsalinsososemcriatividade.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_gado.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/gado.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/xml_backup_rules.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/layout_fragment_home.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_logo_pet_branca_vertical.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/logo_pet_branca_vertical.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_loginbkg.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/loginbkg.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_notifications_black_24dp.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_notifications_black_24dp.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_cowshoroomwpp.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/cowshoroomwpp.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_logo_pet_horizontal_transparente.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/logo_pet_horizontal_transparente.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/layout_fragment_notifications.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/layout/fragment_notifications.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_custom_edittext.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/custom_edittext.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_logo_pet_vertical_vermelho.png.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/logo_pet_vertical_vermelho.png"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/layout_activity_menu_selecao.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/layout/activity_menu_selecao.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/layout_fragment_calendario.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/layout/fragment_calendario.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/drawable_ic_home_black_24dp.xml.flat",
+        "source": "com.example.tela_login.app-main-74:/drawable/ic_home_black_24dp.xml"
+    },
+    {
+        "merged": "com.example.tela_login.app-debug-72:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.tela_login.app-main-74:/mipmap-hdpi/ic_launcher.webp"
+    }
+]
