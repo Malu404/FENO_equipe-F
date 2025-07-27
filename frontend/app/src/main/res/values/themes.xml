@@ -6,6 +6,7 @@
         <!-- Por exemplo: -->
         <item name="colorPrimary">@color/red_pet</item>
         <item name="colorPrimaryVariant">@color/red_pet</item>
+        <item name="color">@color/redder_pet</item>
         <item name="colorOnPrimary">@android:color/white</item>
     </style>
 
