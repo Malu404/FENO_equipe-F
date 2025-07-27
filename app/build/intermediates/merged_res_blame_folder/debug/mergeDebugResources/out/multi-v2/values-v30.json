@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.tela_login.app-mergeDebugResources-70:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\GOLDENTEC\\.gradle\\caches\\8.11.1\\transforms\\f1ea1c5fbd9988291e730baa088b09bc\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}
