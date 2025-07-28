@@ -7,32 +7,32 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.tela_login.ui.home.HomeFragment"
+        android:name="com.example.fenoapp.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.tela_login.ui.dashboard.DashboardFragment"
+        android:name="com.example.fenoapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.tela_login.ui.notifications.NotificationsFragment"
+        android:name="com.example.fenoapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.example.tela_login.CalendarioFragment"
+        android:name="com.example.fenoapp.CalendarioFragment"
         android:label="Calendário"
         tools:layout="@layout/fragment_calendario" />
 
     <fragment
         android:id="@+id/navigation_monitoria"
-        android:name="com.example.tela_login.fragment.MonitoriaFragment"
+        android:name="com.example.fenoapp.fragment.MonitoriaFragment"
         android:label="Monitoria"
         tools:layout="@layout/fragment_monitoria" />
 

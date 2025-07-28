@@ -1,13 +1,12 @@
-package com.example.tela_login
+package com.example.fenoapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.tela_login.databinding.ActivityMenuSelecaoBinding
+import com.example.fenoapp.databinding.ActivityMenuSelecaoBinding
 
 class MenuSelecao : AppCompatActivity() {
 

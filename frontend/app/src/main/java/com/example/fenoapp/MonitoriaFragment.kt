@@ -1,4 +1,4 @@
-package com.example.tela_login.fragment
+package com.example.fenoapp.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.example.tela_login.ui.theme.Tela_loginTheme
-import com.example.tela_login.TelaSolicitacao
+import com.example.fenoapp.ui.theme.Tela_loginTheme
+import com.example.fenoapp.TelaSolicitacao
 
 class MonitoriaFragment : Fragment() {
     override fun onCreateView(
