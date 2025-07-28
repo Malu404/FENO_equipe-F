@@ -1,4 +1,4 @@
-package com.example.tela_login.ui.theme
+package com.example.fenoapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

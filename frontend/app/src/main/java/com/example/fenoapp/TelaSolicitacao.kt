@@ -1,4 +1,4 @@
-package com.example.tela_login
+package com.example.fenoapp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

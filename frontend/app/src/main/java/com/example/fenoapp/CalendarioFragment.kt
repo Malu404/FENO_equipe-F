@@ -10,9 +10,9 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.tela_login.databinding.FragmentCalendarioBinding
-import com.example.tela_login.ui.calendario.CalendarioScreen
-import com.example.tela_login.ui.theme.Tela_loginTheme
+import com.example.fenoapp.databinding.FragmentCalendarioBinding
+import com.example.fenoapp.ui.calendario.CalendarioScreen
+import com.example.fenoapp.ui.theme.Tela_loginTheme
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.

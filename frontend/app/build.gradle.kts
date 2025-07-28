@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tela_login"
+    namespace = "com.example.fenoapp"
     compileSdk = 35
 
     defaultConfig {
@@ -57,8 +57,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation ("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation (libs.androidx.constraintlayout)
     implementation (libs.calendarviewcompose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
