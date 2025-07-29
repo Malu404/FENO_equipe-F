@@ -1,4 +1,4 @@
-package com.example.tela_login.ui.calendario
+package com.example.fenoapp.ui.calendario
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,25 +10,43 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
+import com.example.fenoapp.TokenManager
+import com.example.fenoapp.model.Monitoria
+import com.example.fenoapp.network.RetrofitClient
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.daysOfWeek
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.time.YearMonth
 
-@Composable
-fun CalendarioScreen() {
-    val currentMonth = remember { YearMonth.now() }
-    val compromissos = remember { //adicionar aqui o pull da database
-        mapOf(
-            currentMonth.atDay(15) to listOf("Gado Cálculo 14h", "Gado grafos 13h"),
-            currentMonth.atDay(21) to listOf("Placeholder aaaaaa", "Hatsune miku esteve aqui")
-        )
-    }
 
-    val selectedDate = remember { mutableStateOf<CalendarDay?>(null) }
+@Composable
+fun CalendarioScreen(token: String) {
+    val currentMonth = remember { YearMonth.now() }
+    var selectedDate by remember { mutableStateOf<CalendarDay?>(null) }
+    var compromissos by remember { mutableStateOf<Map<LocalDate, List<String>>>(emptyMap()) }
+    val coroutineScope = rememberCoroutineScope()
+
+    // Quando selectedDate muda, busca monitorias para essa data
+    LaunchedEffect(selectedDate) {
+        selectedDate?.let { day ->
+            val dataStr = day.date.toString() // "YYYY-MM-DD"
+            coroutineScope.launch {
+                val monitorias = buscarMonitoriasParaData(token, dataStr)
+                compromissos = compromissos.toMutableMap().apply {
+                    put(day.date, monitorias.map { monitoria ->
+                        val horaFormatada = monitoria.data_hora?.substring(11,16) ?: "??:??"
+                        "${monitoria.disciplina} às $horaFormatada"
+                    })
+                }
+            }
+        }
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
 
@@ -41,7 +59,7 @@ fun CalendarioScreen() {
 
         HorizontalCalendar(
             dayContent = { day ->
-                val isSelected = selectedDate.value?.date == day.date
+                val isSelected = selectedDate?.date == day.date
 
                 Box(
                     modifier = Modifier
@@ -52,8 +70,7 @@ fun CalendarioScreen() {
                             if (isSelected) Color(0xFF90CAF9) else Color(0xFFE3F2FD)
                         )
                         .clickable {
-                            selectedDate.value = day
-                            println("Dia clicado: ${day.date}")
+                            selectedDate = day
                         },
                     contentAlignment = Alignment.Center
                 ) {
@@ -65,7 +82,7 @@ fun CalendarioScreen() {
                     )
                 }
             },
-            monthBody = { month , content ->
+            monthBody = { month, content ->
                 Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         val daysOfWeek = daysOfWeek()
@@ -84,29 +101,44 @@ fun CalendarioScreen() {
             }
         )
     }
-    selectedDate.value?.let { diaSelecionado ->
+
+    selectedDate?.let { diaSelecionado ->
         val compromissosDoDia = compromissos[diaSelecionado.date]
         AlertDialog(
-            onDismissRequest = { selectedDate.value = null },
+            onDismissRequest = { selectedDate = null },
             title = {
-                Text("Compromissos de ${diaSelecionado.date}")
+                Text("Monitorias de ${diaSelecionado.date}")
             },
             text = {
-                if (compromissosDoDia != null && compromissosDoDia.isNotEmpty()) {
+                if (!compromissosDoDia.isNullOrEmpty()) {
                     Column {
                         compromissosDoDia.forEach {
                             Text("• $it", fontSize = 14.sp)
                         }
                     }
                 } else {
-                    Text("Nenhum compromisso", fontSize = 14.sp)
+                    Text("Nenhuma monitoria agendada", fontSize = 14.sp)
                 }
             },
             confirmButton = {
-                Button(onClick = { selectedDate.value = null }) {
+                Button(onClick = { selectedDate = null }) {
                     Text("Fechar")
                 }
             }
         )
+    }
+}
+
+// Função suspensa para buscar monitorias da API para uma data
+suspend fun buscarMonitoriasParaData(token: String, data: String): List<Monitoria> {
+    return try {
+        val response = RetrofitClient.apiService.obterMonitoriasPorData("Bearer $token", data)
+        if (response.isSuccessful) {
+            response.body()?.data ?: emptyList()
+        } else {
+            emptyList()
+        }
+    } catch (e: Exception) {
+        emptyList()
     }
 }

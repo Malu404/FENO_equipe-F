@@ -74,17 +74,23 @@ def requer_token(func):
     @wraps(func)
     def decorado(*args, **kwargs):
         token = None
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization']
+        auth_header = request.headers.get('Authorization')
+
+        if auth_header and auth_header.startswith('Bearer '):
+            token = auth_header.split(' ')[1]
+
         if not token:
-            return make_response('Token faltante', 401)
+            return make_response('Token faltante', 402)
 
         try:
             data = jwt.decode(token, 'segredo', algorithms=['HS256'])
-            usuario = Cliente.query.filter_by(id=data['id'].first())
-        except Exception as p:
-            print(p)
-            return make_response('Token inválido', 401)
+            usuario = Cliente.query.filter_by(id=data['id']).first()
+            if not usuario:
+                return make_response('Usuário não encontrado', 403)
+        except Exception as e:
+            print("Erro ao decodificar token:", e)
+            return make_response('Token inválido', 405)
+
         return func(usuario, *args, **kwargs)
     return decorado
 
@@ -95,7 +101,21 @@ def requer_token(func):
 @app.route('/monitorias', methods=['GET'])
 @requer_token
 def obter_todas_monitorias(usuario):
-    monitorias = Monitoria.query.all()
+    data_str = request.args.get('data')
+    query = Monitoria.query
+    if data_str:
+        try:
+            data = datetime.strptime(data_str, "%Y-%m-%d")
+            prox_dia = data + timedelta(days=1)
+            query = query.filter(
+                Monitoria.data_hora >= data,
+                Monitoria.data_hora < prox_dia
+            )
+        except ValueError:
+            return make_response(
+                {'erro': 'Formato inválido. Use: YYYY-MM-DD'}, 400
+            )
+    monitorias = query.all()
     return make_response(
         {'data': [tupla.serialize for tupla in monitorias]}, 200
     )
@@ -166,6 +186,15 @@ def deletar_monitoria(usuario, id):
 # Rotas para disciplinas
 
 
+@app.route('/disciplinas', methods=['GET'])
+@requer_token
+def obter_disciplinas(usuario):
+    disciplinas = Disciplina.query.all()
+    return make_response(
+        {'data': [tupla.serialize for tupla in disciplinas]}, 200
+    )
+
+
 @app.route('/disciplinas/<id>', methods=['GET'])
 @requer_token
 def obter_disciplina(usuario, id):
@@ -173,7 +202,7 @@ def obter_disciplina(usuario, id):
         disciplina = Disciplina.query.filter_by(id=id).first()
         if not disciplina:
             return make_response(
-                {'mensagem': 'Disciplina não encontrada'}, 404
+                {'mensagem': 'Disciplina nao encontrada'}, 404
             )
         return make_response({'dados': disciplina.serialize}, 200)
     except Exception as e:

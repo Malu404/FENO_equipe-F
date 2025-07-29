@@ -26,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -154,7 +155,6 @@ fun LoginScreen(onNavigateToRegister: () -> Unit) {
                                         val token = response.body()!!.token
                                         val tokenManager = TokenManager(context)
                                         tokenManager.saveToken(token)
-
                                         // Vai para a próxima tela
                                         val intent = Intent(context, MenuSelecao::class.java)
                                         context.startActivity(intent)

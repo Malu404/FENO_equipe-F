@@ -9,6 +9,14 @@ class Disciplina(db.Model):
     codigo = db.Column(db.String(50), nullable=False)
     data_criacao = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'codigo': self.codigo,
+            'nome': self.nome
+        }
+
 
 class Usuario():
     cpf = db.Column(db.String(11), unique=True, nullable=False)
@@ -44,6 +52,19 @@ class Monitoria(db.Model):
     data_criacao = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     certificado = db.relationship('Certificado', backref='monitoria', uselist=False)
+    disciplina_rel = db.relationship('Disciplina', backref='monitorias', lazy=True)
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'data_hora': self.data_hora.isoformat() if self.data_hora else None,
+            'descricao': self.descricao,
+            'disciplina': self.disciplina,
+            'disciplina_nome': self.disciplina_rel.nome if self.disciplina_rel else None,
+            'monitor_id': self.monitor_id,
+            'data_criacao': self.data_criacao.isoformat() if self.data_criacao else None
+        }
 
 
 class Certificado(db.Model):
