@@ -1,18 +1,28 @@
-package com.example.tela_login
+package com.example.fenoapp
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Text
 import androidx.fragment.app.Fragment
-import com.example.fenoapp.databinding.FragmentCalendarioBinding
+import androidx.lifecycle.lifecycleScope
 import com.example.fenoapp.ui.calendario.CalendarioScreen
 import com.example.fenoapp.ui.theme.Tela_loginTheme
+import com.example.fenoapp.databinding.FragmentCalendarioBinding
+import com.example.fenoapp.model.Monitoria
+import com.example.fenoapp.network.RetrofitClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -81,10 +91,18 @@ class CalendarioFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        visible = true
-        binding.calendarCompose.setContent {
-            Tela_loginTheme {
-                CalendarioScreen()
+        val tokenManager = TokenManager(requireContext())
+        lifecycleScope.launch {
+            val token = tokenManager.getToken()
+
+            if (token != null) {
+                binding.calendarCompose.setContent {
+                    Tela_loginTheme {
+                        CalendarioScreen(token)
+                    }
+                }
+            } else {
+                Log.e("CalendarioFragment", "Token está nulo!")
             }
         }
 
@@ -99,6 +117,31 @@ class CalendarioFragment : Fragment() {
         // while interacting with the UI.
         dummyButton?.setOnTouchListener(delayHideTouchListener)
     }
+
+    private fun buscarMonitoriasPorData(token: String, data: String, onResult: (List<Monitoria>) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitClient.apiService.obterMonitoriasPorData("Bearer $token", data)
+                if (response.isSuccessful) {
+                    val monitorias = response.body()?.data ?: emptyList()
+                    withContext(Dispatchers.Main) {
+                        onResult(monitorias)
+                    }
+                } else {
+                    Log.e("API", "Erro ao buscar monitorias: ${response.code()}")
+                    withContext(Dispatchers.Main) {
+                        onResult(emptyList())
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("API", "Erro de rede: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    onResult(emptyList())
+                }
+            }
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()

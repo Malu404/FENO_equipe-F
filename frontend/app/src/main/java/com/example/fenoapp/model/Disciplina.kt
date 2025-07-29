@@ -1,6 +1,9 @@
 package com.example.fenoapp.model
 
 data class Disciplina(
-    val codigo: Int,              // ou "codigo", dependendo do seu modelo
+    val id: Int,
+    val codigo: String,
     val nome: String
-)
+) {
+    override fun toString(): String = "$codigo - $nome"
+}
