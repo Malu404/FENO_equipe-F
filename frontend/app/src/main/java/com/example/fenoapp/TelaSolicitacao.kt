@@ -50,6 +50,7 @@ import kotlinx.coroutines.launch
         val coroutineScope = rememberCoroutineScope()
         val context = LocalContext.current
         val tokenManager = remember { TokenManager(context) }
+        val isAdminState = remember { mutableStateOf(false) }
         var listaDisciplinas by remember { mutableStateOf<List<Disciplina>>(emptyList()) }
         var loading by remember { mutableStateOf(true) }
         val token = remember { mutableStateOf<String?>(null) }
@@ -57,22 +58,52 @@ import kotlinx.coroutines.launch
         var data by remember { mutableStateOf(TextFieldValue("")) }
         var horario by remember { mutableStateOf(TextFieldValue("")) }
         var duvidas by remember { mutableStateOf("") }
+        var monitor by remember { mutableStateOf("") }
 
         LaunchedEffect(Unit) {
             coroutineScope.launch {
+                loading = true
                 try {
                     val token = TokenManager(context).getToken()
-                    val response = RetrofitClient.apiService.getDisciplinas("Bearer $token")
-                    if (response.isSuccessful) {
-                        listaDisciplinas = response.body()?.data ?: emptyList()
+
+                    if (token.isNullOrBlank()) {
+                        Log.e("API", "Token não encontrado")
+                        isAdminState.value = false
+                        return@launch
+                    }
+
+                    val authHeader = "Bearer $token"
+                    val api = RetrofitClient.criarApiServiceComToken(authHeader)
+
+                    // Verifica se o usuário é admin
+                    val clienteResponse = api.obterClienteAtual(authHeader)
+
+                    if (clienteResponse.isSuccessful) {
+                        val cliente = clienteResponse.body()
+                        isAdminState.value = cliente?.admin == true
+                    } else {
+                        Log.e("API", "Erro ao obter cliente: ${clienteResponse.code()}")
+                        isAdminState.value = false
+                    }
+
+                    // Busca lista de disciplinas
+                    val disciplinasResponse = api.getDisciplinas(authHeader)
+
+                    if (disciplinasResponse.isSuccessful) {
+                        listaDisciplinas = disciplinasResponse.body()?.data ?: emptyList()
+                    } else {
+                        Log.e("API", "Erro ao obter disciplinas: ${disciplinasResponse.code()}")
                     }
                 } catch (e: Exception) {
-                    Log.e("API", "Erro ao buscar disciplinas", e)
+                    Log.e("API", "Erro ao buscar dados", e)
+                    isAdminState.value = false
                 } finally {
                     loading = false
                 }
             }
         }
+
+
 
         Scaffold(
             snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -213,6 +244,20 @@ import kotlinx.coroutines.launch
 
                     )
 
+                    OutlinedTextField(
+                        value = monitor,
+                        onValueChange = { monitor = it },
+                        label = { Text("Nome do monitor") },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp),
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = colorResource(id = R.color.red_pet),
+                            unfocusedBorderColor = colorResource(id = R.color.red_pet).copy(alpha = 0.5f)
+                        )
+                    )
+
                     Button(
                         onClick = {
                             val disciplinaId = disciplinaSelecionada?.id
@@ -235,7 +280,8 @@ import kotlinx.coroutines.launch
                                         MonitoriaRequest(
                                             data_hora = dataHoraFormatada,
                                             descricao = duvidas,
-                                            disciplina = disciplinaId
+                                            disciplina = disciplinaId,
+                                            monitor = monitor
                                         )
                                     )
                                     snackbarHostState.showSnackbar("Solicitação enviada com sucesso!")

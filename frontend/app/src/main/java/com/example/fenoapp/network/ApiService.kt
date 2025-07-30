@@ -1,5 +1,6 @@
 package com.example.fenoapp.network
 
+import com.example.fenoapp.model.ClienteResponse
 import com.example.fenoapp.model.Disciplina
 import com.example.fenoapp.model.DisciplinaResponse
 import com.example.fenoapp.model.LoginRequest
@@ -37,4 +38,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("data") data: String
     ): Response<MonitoriaResponse>
+
+    @GET("/cliente")
+    suspend fun obterClienteAtual(
+        @Header("Authorization") token: String
+    ): Response<ClienteResponse>
 }
