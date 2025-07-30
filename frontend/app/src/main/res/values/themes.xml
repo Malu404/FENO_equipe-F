@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Tela_login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Você pode personalizar as cores, fontes e estilos aqui -->
+        <!-- Por exemplo: -->
+        <item name="colorPrimary">@color/red_pet</item>
+        <item name="colorPrimaryVariant">@color/red_pet</item>
+        <item name="color">@color/redder_pet</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.Tela_login.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+</resources>
