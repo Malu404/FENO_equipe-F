@@ -4,5 +4,5 @@ data class MonitoriaRequest(
     val data_hora: String?,
     val descricao: String,
     val disciplina: Int,
-    val monitor_id: Int? = null
+    val monitor: String?
 )

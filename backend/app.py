@@ -95,6 +95,19 @@ def requer_token(func):
     return decorado
 
 
+@app.route('/clientes/<int:id>', methods=['GET'])
+@requer_token
+def obter_cliente(usuario, id):
+    try:
+        cliente = Cliente.query.filter_by(id=id).first()
+        if not cliente:
+            return make_response({'mensagem': 'Cliente não encontrado'}, 404)
+        return make_response({'dados': cliente.serialize}, 200)
+    except Exception as e:
+        print(e)
+        return make_response({'mensagem': 'Erro ao buscar cliente'}, 500)
+
+
 # Rotas das monitorias
 
 
@@ -210,53 +223,3 @@ def obter_disciplina(usuario, id):
         return make_response({'mensagem': 'Não foi possível processar'}, 404)
 
 
-@app.route('/disciplinas', methods=['POST'])
-@requer_token
-def criar_disciplina(usuario):
-    try:
-        disciplina = request.json
-        if not disciplina.get('nome') or disciplina.get('codigo'):
-            return make_response({'mensagem': 'Campos faltantes'}, 400)
-        disciplina = Disciplina(
-            nome=disciplina.get('nome'),
-            codigo=disciplina.get('codigo')
-        )
-        db.session.add(disciplina)
-        db.session.commit()
-        return make_response({'dados': disciplina.serialize}, 200)
-    except Exception as e:
-        print(e)
-        return make_response({'mensagem': 'Não foi possível processar'}, 404)
-
-
-@app.route('/disciplinas/<id>', methods=['PATCH'])
-@requer_token
-def alterar_disciplina(usuario, id):
-    try:
-        disciplina = Disciplina.query.filter_by(id=id).first()
-        if not disciplina:
-            return make_response({'Disciplina não encontrada'}, 409)
-        dados = request.json
-        for campo in ['nome', 'codigo']:
-            if campo in dados:
-                setattr(disciplina, campo, dados[campo])
-        db.session.commit()
-        return make_response({'data': disciplina.serialize}, 200)
-    except Exception as e:
-        print(e)
-        return make_response({'mensagem': 'Não foi possível processar'}, 404)
-
-
-@app.route('/disciplinas/<id>', methods=['DELETE'])
-@requer_token
-def deletar_disciplina(usuario, id):
-    try:
-        disciplina = Disciplina.query.filter_by(id=id).first()
-        if not disciplina:
-            return make_response({'Disciplina não encontrada'}, 409)
-        db.session.delete(disciplina)
-        db.session.commit()
-        return make_response({'mensagem': 'Disciplina deletada'}, 200)
-    except Exception as e:
-        print(e)
-        return make_response({'mensagem': 'Não foi possível processar'}, 404)

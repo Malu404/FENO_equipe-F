@@ -5,6 +5,6 @@ data class Monitoria(
     val data_hora: String,
     val descricao: String,
     val disciplina: Int,
-    val monitor_id: Int?,
+    val monitor: String?,
     val data_criacao: String
 )
