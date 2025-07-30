@@ -59,6 +59,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation ("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation (libs.calendarviewcompose)
+    implementation ("com.kizitonwose.calendar:compose:2.0.3")
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.recyclerview) // ou a versão mais recente
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

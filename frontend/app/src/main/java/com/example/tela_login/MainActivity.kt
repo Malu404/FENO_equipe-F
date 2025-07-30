@@ -84,7 +84,7 @@ fun LoginScreen() {
                 Text(
                     text = "Login",
                     fontSize = 32.sp,
-                    color = colorResource(id = R.color.red_pet),
+                    color = colorResource(id = R.color.redder_pet),
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
 
@@ -137,7 +137,7 @@ fun LoginScreen() {
                         .padding(top = 32.dp),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.red_pet)
+                        containerColor = colorResource(id = R.color.redder_pet)
                     )
                 ) {
                     Text("Login")
