@@ -1,4 +1,4 @@
-from . import db
+from . import db, app
 from sqlalchemy.sql import func
 
 
@@ -51,3 +51,7 @@ class Certificado(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     monitoria_id = db.Column(db.Integer, db.ForeignKey('monitoria.id'), unique=True, nullable=False)
     data_criacao = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
+
+with app.app_context():
+    db.create_all()
