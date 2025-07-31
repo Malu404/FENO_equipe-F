@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/outline_calendar_month_24"
+        android:title="Calendário" />
+
+
+    <item
+        android:id="@+id/navigation_monitoria"
+        android:icon="@drawable/baseline_app_soliciacao_24"
+        android:title="Monitoria" />
+
+    <item
+        android:id="@+id/navigation_edit_monitoria"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_notifications" />
+
+</menu>
