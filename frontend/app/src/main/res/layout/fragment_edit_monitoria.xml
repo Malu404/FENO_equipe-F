@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.EditMonitoriaFragment">
-
+    tools:context=".ui.edit_monitoria.EditMonitoriaFragment">
     <TextView
-        android:id="@+id/text_notifications"
+        android:id="@+id/text_edit_monitoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
