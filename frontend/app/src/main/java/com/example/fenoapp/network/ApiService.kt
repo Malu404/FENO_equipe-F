@@ -5,6 +5,7 @@ import com.example.fenoapp.model.Disciplina
 import com.example.fenoapp.model.DisciplinaResponse
 import com.example.fenoapp.model.LoginRequest
 import com.example.fenoapp.model.LoginResponse
+import com.example.fenoapp.model.Monitoria
 import com.example.fenoapp.model.MonitoriaRequest
 import com.example.fenoapp.model.MonitoriaResponse
 import com.example.fenoapp.model.RegisterRequest
@@ -32,6 +33,11 @@ interface ApiService {
         @Header("Authorization") authHeader: String,
         @Body request: MonitoriaRequest
     ): Response<Any>
+
+    @GET("monitorias")
+    suspend fun getTodasMonitorias(
+        @Header("Authorization") token: String
+    ): List<Monitoria>
 
     @GET("monitorias")
     suspend fun obterMonitoriasPorData(

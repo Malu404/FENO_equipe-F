@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">ec2-54-94-63-191.sa-east-1.compute.amazonaws.com</domain>
+        <domain includeSubdomains="true">56.124.118.195</domain>
     </domain-config>
 </network-security-config>

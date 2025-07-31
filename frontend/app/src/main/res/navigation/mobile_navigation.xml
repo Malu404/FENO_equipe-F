@@ -23,6 +23,11 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
+    <fragment
+        android:id="@+id/navigation_monitoria_lista"
+        android:name="com.example.fenoapp.ItemFragment"
+        android:label="Lista de Monitorias"
+        tools:layout="@layout/fragment_item_list" />
 
     <fragment
         android:id="@+id/navigation_calendar"

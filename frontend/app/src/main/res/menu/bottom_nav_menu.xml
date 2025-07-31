@@ -26,4 +26,8 @@
         android:icon="@drawable/baseline_app_soliciacao_24"
         android:title="Monitoria" />
 
+    <item
+        android:id="@+id/navigation_monitoria_lista"
+        android:icon="@drawable/outline_breaking_news_24"
+        android:title="Minhas Monitorias" />
 </menu>
