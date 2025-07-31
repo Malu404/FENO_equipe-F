@@ -60,26 +60,36 @@ fun CalendarioScreen(token: String) {
         HorizontalCalendar(
             dayContent = { day ->
                 val isSelected = selectedDate?.date == day.date
+                val temMonitoria = compromissos[day.date]?.isNotEmpty() == true
 
                 Box(
                     modifier = Modifier
                         .size(42.dp)
                         .padding(4.dp)
                         .clip(RoundedCornerShape(6.dp))
-                        .background(
-                            if (isSelected) Color(0xFF90CAF9) else Color(0xFFE3F2FD)
-                        )
-                        .clickable {
-                            selectedDate = day
-                        },
+                        .background(if (isSelected) Color(0xFF90CAF9) else Color(0xFFE3F2FD))
+                        .clickable { selectedDate = day },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = day.date.dayOfMonth.toString(),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp,
-                        color = if (isSelected) Color.White else Color.Black
-                    )
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = day.date.dayOfMonth.toString(),
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 14.sp,
+                            color = if (isSelected) Color.White else Color.Black
+                        )
+
+                        // Bolinha verde 💚 apenas se tiver monitoria
+                        if (temMonitoria) {
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Box(
+                                modifier = Modifier
+                                    .size(6.dp)
+                                    .clip(RoundedCornerShape(50))
+                                    .background(Color(0xFF4CAF50))
+                            )
+                        }
+                    }
                 }
             },
             monthBody = { month, content ->
